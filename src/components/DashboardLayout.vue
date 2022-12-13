@@ -43,7 +43,7 @@
                 drawer: false,
                 group: null,
                 items: [
-                    { title: "Dashboard", to:"/" },
+                    { title: "Dashboard", to:"/dashboard" },
                     { title: "Buah", to:"/buah" },
                     { title: "Tambah Pengiriman", to:"/add" },
                     { title: "Cek Pengiriman", to:"/cek" },

@@ -12,12 +12,24 @@ const router = new VueRouter({
     routes: [
         {
             path: "/",
+            name: "login",
+            component: importComponent("LoginPage"),
+        },
+        
+        {
+            path: "/register",
+            name: "register",
+            component: importComponent("RegisterPage"),
+        },
+
+        {
+            path: "/dashboard",
             name: "admin",
             component: importComponent("DashboardLayout"),
             children: [
                 //dashboard
                 {
-                    path: "/",
+                    path: "/dashboard",
                     name: "Root",
                     component: importComponent("DashboardIndex"),
                 },
