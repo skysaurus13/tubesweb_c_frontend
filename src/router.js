@@ -24,7 +24,7 @@ const router = new VueRouter({
 
         {
             path: "/dashboard",
-            name: "admin",
+            name: "dashboard",
             component: importComponent("DashboardLayout"),
             children: [
                 //dashboard

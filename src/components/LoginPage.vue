@@ -6,13 +6,13 @@
           <v-flex xs12 sm8 md4>
             <v-card class="elevation-12">
               <v-toolbar dark color="primary">
-                <v-toolbar-title>Login Form</v-toolbar-title>
+                <v-toolbar-title>Login</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <v-form>
-                  <v-text-field  label="Email" required></v-text-field>
-                  <v-text-field :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"  :type="show1 ? 'text' : 'password'"  label="Password" required  @click:append="show1 = !show1"></v-text-field>
-                  <v-btn color="primary">Login</v-btn>
+                <v-form @submit.prevent="login">
+                  <v-text-field  label="Email" v-model="user.email" required></v-text-field>
+                  <v-text-field :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"  :type="show1 ? 'text' : 'password'"  label="Password" v-model="user.password" required  @click:append="show1 = !show1"></v-text-field>
+                  <v-btn color="primary" type="submit" >Login</v-btn>
                     <p class="forgot-password text-right">
                       Belum Punya Akun?
                       <router-link :to="{name: 'register'}">Register</router-link>
@@ -28,22 +28,33 @@
 </template>
   
   <script>
+  import router from '@/router';
+  import axios from 'axios';
+
   export default {
-    data() {
-      return {
-        email: '',
-        password: '',
-        show1: false,
-  
+      data() {
+          return {
+              show1: false,
+              user: {
+                  email: '',
+                  password: '',
+              }
+          };
+      },
+
+      methods: {
+          login() {
+              console.log(this.user);
+                axios.post('http://127.0.0.1:8000/api/login', this.user)
+                  .then(() => {
+                      router.push({
+                        name: 'dashboard'
+                      })
+                  })
+                  .catch((error) => {
+                      console.log(error);
+                  });
+          }
       }
-    },
-    methods: {
-      onSubmit() {
-        // Perform login here...
-        // You will likely want to use the email and password
-        // from the form, which can be accessed via this.email
-        // and this.password
-      }
-    }
   }
   </script>
