@@ -1,60 +1,69 @@
 <template>
-  <v-app>
-    <v-main>
-      <v-container fluid fill-height>
-        <v-layout align-center justify-center>
-          <v-flex xs12 sm8 md4>
-            <v-card class="elevation-12">
-              <v-toolbar dark color="primary">
-                <v-toolbar-title>Login</v-toolbar-title>
-              </v-toolbar>
-              <v-card-text>
-                <v-form @submit.prevent="login">
-                  <v-text-field  label="Email" v-model="user.email" required></v-text-field>
-                  <v-text-field :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"  :type="show1 ? 'text' : 'password'"  label="Password" v-model="user.password" required  @click:append="show1 = !show1"></v-text-field>
-                  <v-btn color="primary" type="submit" >Login</v-btn>
+  <main>
+    <v-container fluid fill-height class="bg">
+      <v-layout flex align-center justify-center>
+        <v-flex xs12 sm6 elevation-6>
+          <v-toolbar dark color="primary">
+            <v-toolbar-title >
+              <h1>Login</h1>
+            </v-toolbar-title>
+          </v-toolbar>
+
+          <v-card>
+            <v-card-text class="pt-4">
+              <div>
+                <v-form v-model="valid" ref="form">
+                  <v-text-field label="E-mail" v-model="email" :rules="emailRules" required></v-text-field>
+                  <v-text-field :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"  :type="show1 ? 'text' : 'password'"  label="Password" v-model="password" required  @click:append="show1 = !show1" :rules="passwordRules"></v-text-field>
+                  <v-btn color="primary" @click="submit">Login</v-btn>
                     <p class="forgot-password text-right">
-                      Belum Punya Akun?
+                        Belum Punya Akun?
                       <router-link :to="{name: 'register'}">Register</router-link>
                     </p> 
                 </v-form>
-              </v-card-text>
-            </v-card>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-main>
-  </v-app>
+              </div>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </main>
 </template>
   
-  <script>
-  import router from '@/router';
-  import axios from 'axios';
+<script>
+    export default {
+    name: "LoginMenu",
+    components: {
+    },
+    data() {
+      return {
+        show1: false,
+        email: "",
+        password: "",
 
-  export default {
-      data() {
-          return {
-              show1: false,
-              user: {
-                  email: '',
-                  password: '',
-              }
-          };
-      },
-
-      methods: {
-          login() {
-              console.log(this.user);
-                axios.post('http://127.0.0.1:8000/api/login', this.user)
-                  .then(() => {
-                      router.push({
-                        name: 'dashboard'
-                      })
-                  })
-                  .catch((error) => {
-                      console.log(error);
-                  });
+        emailRules: [(v) => !!v || "E-mail harus diisi dan tidak boleh kosong !"],
+        passwordRules: [(v) => !!v || "Password harus diisi dan tidak boleh kosong !"],
+      };
+    },
+    methods: {
+      submit() {
+        if (this.$refs.form.validate()) {
+          this.$http
+            .post(this.$api + "/login", {
+              email: this.email,
+              password: this.password,
+            })
+            .then((response) => {
+              localStorage.setItem("id", response.data.user.id);
+              localStorage.setItem("token", response.data.access_token);
+              this.$router.push({name: "Root", });
+            })
+            .catch((error) => {
+              this.error_message = error.response.data.message;
+              localStorage.removeItem("token");
+            });
           }
-      }
-  }
-  </script>
+        },     
+      },
+  };
+</script>

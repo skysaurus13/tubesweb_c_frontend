@@ -27,8 +27,10 @@
         <v-app-bar color="#d66700" dark>
             <v-app-bar-nav-icon
                 @click="drawer = true"
-                color="white"></v-app-bar-nav-icon>
-            <VSpacer/>    
+                color="white" justify="space-around"></v-app-bar-nav-icon>
+                <v-list-item-title class="title">KELOMPOK C</v-list-item-title>
+                <v-btn color="white" text @click="logout">Keluar</v-btn>
+            <VSpacer/>   
         </v-app-bar>
         <div class="fullheight pa-5">
             <router-view></router-view>
@@ -48,11 +50,23 @@
                     { title: "Tambah Pengiriman", to:"/add" },
                     { title: "Cek Pengiriman", to:"/cek" },
                     { title: "Hubungi Kami", to:"/hub" },
-                    // { title: "Profil", to:"/profil" },
+                    { title: "Profil", to:"/profil" },
                     // { title: "Keluar", to:"/keluar" },
                 ],
             };
         },
+        computed: {
+            loggedin(){
+                return localStorage.getItem("token") != null;
+            }
+        },
+        methods: {
+            logout(){
+                localStorage.removeItem('id');
+                localStorage.removeItem('token');
+                this.$router.push({name: "login",});
+            },
+        }
     };
 </script>
 <style scoped>

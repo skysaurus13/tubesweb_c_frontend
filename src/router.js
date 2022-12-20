@@ -22,36 +22,48 @@ const router = new VueRouter({
             component: importComponent("RegisterPage"),
         },
 
+        
+
         {
             path: "/dashboard",
             name: "dashboard",
-            component: importComponent("DashboardLayout"),
+            component: importComponent("Menu/DashboardLayout"),
             children: [
                 //dashboard
                 {
                     path: "/dashboard",
                     name: "Root",
-                    component: importComponent("DashboardIndex"),
+                    component: importComponent("Menu/DashboardIndex"),
                 },
                 {
                     path: "/buah",
                     name: "Buah",
-                    component: importComponent("BuahList"),
+                    component: importComponent("Menu/BuahList"),
                 },
                 {
                     path: "/add",
                     name: "Tambah Pengiriman",
-                    component: importComponent("TambahPengiriman"),
+                    component: importComponent("Menu/TambahPengiriman"),
                 },
                 {
                     path: "/cek",
                     name: "Cek Pengiriman",
-                    component: importComponent("CekPengiriman"),
+                    component: importComponent("Menu/CekPengiriman"),
                 },
                 {
                     path: "/hub",
                     name: "Hubungi Kami",
-                    component: importComponent("HubungiKami"),
+                    component: importComponent("Menu/HubungiKami"),
+                },
+                {
+                    path: "/profil",
+                    name: "Profil",
+                    component: importComponent("Menu/ProfilePage"),
+                },
+                {
+                    path: "/updateProfile",
+                    name: "updateProfile",
+                    component: importComponent("Menu/UpdateProfilePage"),
                 },
                 // {
                 //     path: "/profil",
@@ -62,5 +74,6 @@ const router = new VueRouter({
         },
     ],
 });
+
 
 export default router;

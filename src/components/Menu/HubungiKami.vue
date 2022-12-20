@@ -10,6 +10,28 @@
                 </v-list-item-content>
             </v-list-item>
         </v-card>
+        <v-card>
+            <v-form>
+                <v-container>
+                    <v-row center>
+                        <v-col md="10">
+                            <v-text-field v-model="namaUser" :rules="nameRules" label="Nama" required></v-text-field>
+                        </v-col>
+                        <v-col cols="12" md="10">
+                            <v-textarea v-model="passwordUser" :rules="nameRules" label="Silahkan ajukan pertanyaan atau saran" required></v-textarea>
+                        </v-col>
+                    </v-row>
+                    <v-btn
+                    block
+                    color="success"
+                    md="10"
+                    @click="validate"
+                    >
+                    Submit
+                    </v-btn>
+                </v-container>
+            </v-form>
+        </v-card>
     </v-main>
 </template>
 
