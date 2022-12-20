@@ -1,24 +1,29 @@
 <template>
   <main>
-    <v-container fluid fill-height>
+    <v-container fluid fill-height class="background">
       <v-layout flex align-center justify-center>
         <v-flex xs12 sm6 elevation-6>
           <v-toolbar dark color="primary">
-            <v-toolbar-title ><h1>Register</h1></v-toolbar-title>
+            <v-toolbar-title>
+              <h1>Register</h1>
+            </v-toolbar-title>
           </v-toolbar>
           <v-card>
             <v-card-text class="pt-4">
               <div>
-                <v-form ref="form"> 
-                  <v-text-field label="Name" v-model="name" :rules="nameRules" required></v-text-field> 
+                <v-form ref="form">
+                  <v-text-field label="Name" v-model="name" :rules="nameRules" required></v-text-field>
                   <v-text-field label="E-mail" v-model="email" :rules="emailRules" required></v-text-field>
-                  <v-text-field label="Nomor Telepon" v-model="nomorTelepon" :rules="noTlpRules" required></v-text-field>
-                  <v-text-field :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"  :type="show1 ? 'text' : 'password'"  label="Password" v-model="password" required  @click:append="show1 = !show1" :rules="passwordRules"></v-text-field>
-                    <v-btn class="mr-3 mt-3" @click="submit" color="primary">Register</v-btn>
-                    <p class="forgot-password text-right">
-                      Sudah Punya Akun?
-                      <router-link :to="{name: 'login'}">Login</router-link>
-                    </p>
+                  <v-text-field label="Nomor Telepon" v-model="nomorTelepon" :rules="noTlpRules"
+                    required></v-text-field>
+                  <v-text-field :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :type="show1 ? 'text' : 'password'"
+                    label="Password" v-model="password" required @click:append="show1 = !show1"
+                    :rules="passwordRules"></v-text-field>
+                  <v-btn class="mr-3 mt-3" @click="submit" color="primary">Register</v-btn>
+                  <p class="forgot-password text-center mt-3">
+                    Sudah Punya Akun?
+                    <v-text><v-btn @click="login"> Login</v-btn></v-text>
+                  </p>
                 </v-form>
               </div>
             </v-card-text>
@@ -28,9 +33,17 @@
     </v-container>
   </main>
 </template>
+
+<style>
+.background {
+  background-image: url('https://shipper.id/blog/wp-content/uploads/2021/08/3750569.jpg');
+  height: 100vh !important;
+  background-size: cover;
+}
+</style>
     
-  <script>
-  export default {
+<script>
+export default {
   name: "RegisterMenu",
   data() {
     return {
@@ -51,13 +64,14 @@
       if (this.$refs.form.validate()) {
         this.$http
           .post(this.$api + '/register', {
-            name:this.name,
+            name: this.name,
             email: this.email,
             password: this.password,
             nomorTelepon: this.nomorTelepon,
           })
           .then((response) => {
             this.error_message = response.data.message;
+            this.clear();
             this.$router.push({
               name: 'login',
             });
@@ -68,8 +82,13 @@
           })
       }
     },
+    login() {
+      this.$router.push({
+        name: 'login',
+      });
+    },
     clear() {
-      this.$refs.form.reset(); 
+      this.$refs.form.reset();
     },
   },
 };

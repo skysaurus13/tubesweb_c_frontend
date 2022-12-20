@@ -10,39 +10,44 @@ function importComponent(path){
 const router = new VueRouter({
     mode: "history",
     routes: [
+
         {
-            path: "/",
+            path:'*',
+            redirect: '/'
+        },
+
+
+        {
+            path: "/login",
             name: "login",
+            meta:{title:'login'},
             component: importComponent("LoginPage"),
         },
         
         {
             path: "/register",
             name: "register",
+            meta:{title:'register'},
             component: importComponent("RegisterPage"),
         },
 
         
 
         {
-            path: "/dashboard",
-            name: "dashboard",
+            path: "/",
             component: importComponent("Menu/DashboardLayout"),
             children: [
                 //dashboard
                 {
                     path: "/dashboard",
                     name: "Root",
+                    meta:{title:'Dashboard'},
                     component: importComponent("Menu/DashboardIndex"),
-                },
-                {
-                    path: "/buah",
-                    name: "Buah",
-                    component: importComponent("Menu/BuahList"),
                 },
                 {
                     path: "/add",
                     name: "Tambah Pengiriman",
+                    meta:{title:'Tambah Pengiriman'},
                     component: importComponent("Menu/TambahPengiriman"),
                 },
                 {
@@ -73,6 +78,17 @@ const router = new VueRouter({
             ],
         },
     ],
+});
+
+// set judul
+router.beforeEach((to, from, next) => {
+    document.title = to.meta.title;
+    if(to.name !== "login" && localStorage.getItem("token") == null && to.name !== "register"){
+        next({name: 'login'});
+    }
+    else{
+        next();
+    }
 });
 
 
