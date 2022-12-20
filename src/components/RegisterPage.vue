@@ -1,6 +1,6 @@
 <template>
   <main>
-    <v-container fluid fill-height class="bg">
+    <v-container fluid fill-height>
       <v-layout flex align-center justify-center>
         <v-flex xs12 sm6 elevation-6>
           <v-toolbar dark color="primary">
@@ -9,7 +9,7 @@
           <v-card>
             <v-card-text class="pt-4">
               <div>
-                <v-form v-model="valid" ref="form"> 
+                <v-form ref="form"> 
                   <v-text-field label="Name" v-model="name" :rules="nameRules" required></v-text-field> 
                   <v-text-field label="E-mail" v-model="email" :rules="emailRules" required></v-text-field>
                   <v-text-field label="Nomor Telepon" v-model="nomorTelepon" :rules="noTlpRules" required></v-text-field>
@@ -34,11 +34,10 @@
   name: "RegisterMenu",
   data() {
     return {
-      valid: false,
-
+      show1: false,
       name: '',
       email: '',
-      noTlp: '',
+      nomorTelepon: '',
       password: '',
 
       nameRules: [(v) => !!v || "Nama harus diisi dan tidak boleh kosong !"],
@@ -59,18 +58,18 @@
           })
           .then((response) => {
             this.error_message = response.data.message;
-            this.color = "green";
-            this.snackbar = true;
-            this.load = false;
-            this.clear();
             this.$router.push({
               name: 'login',
             });
           })
           .catch((error) => {
             this.error_message = error.response.data.message;
+            alert("Email Harus Unik atau Email sudah ada");
           })
       }
+    },
+    clear() {
+      this.$refs.form.reset(); 
     },
   },
 };

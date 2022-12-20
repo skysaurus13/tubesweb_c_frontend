@@ -15,25 +15,25 @@
         </v-card>
       <v-card>
         <v-card-text>
-          <v-text-field label="Username" v-model="user.name" required>{{user.name}}</v-text-field>
-          <v-text-field label="Email" v-model="user.email" required>{{user.email}}</v-text-field>
-          <v-text-field label="Password" v-model="user.password" type="password" required>{{user.password}}</v-text-field>
-          <v-text-field label="Nomor Telepon" v-model="user.nomorTelepon" required>{{user.nomorTelepon}}</v-text-field>
+          <v-text-field label="Nama" v-model="user.name" :rules="nameRules" required>{{user.name}}</v-text-field>
+          <v-text-field label="Email" v-model="user.email" :rules="emailRules" required>{{user.email}}</v-text-field>
+          <v-text-field :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"  :type="show1 ? 'text' : 'password'" :rules="passwordRules" label="Password" v-model="user.password" required  @click:append="show1 = !show1" ></v-text-field>
+          <v-text-field label="Nomor Telepon" v-model="user.nomorTelepon" :rules="noTlpRules" required>{{user.nomorTelepon}}</v-text-field>
           <v-spacer></v-spacer>
           <v-btn class="mr-2" color="primary" @click="updateData"> Update Profile </v-btn>
-          <v-btn   color="error" @click="deleteacc(user.id)">Delete Account</v-btn>
+          <v-btn   color="error" @click="deleteAccount(user.id)">Delete Account</v-btn>
         </v-card-text>
       </v-card>
 
-      <v-dialog v-model="deleting" persistent max-width="600px">
+      <v-dialog v-model="deleteDialog" persistent max-width="600px">
         <v-card>
             <v-card-title>
-                <span class="headline">Are you sure to delete?</span>
+                <span class="headline">Are you sure want to delete your account?</span>
             </v-card-title>
                 <v-card-actions>
                     <v-spacer></v-spacer>
                         <v-btn color="green darken-1" text @click="confirm"> Yes</v-btn>
-                        <v-btn color="red darken-1" text @click="deleting = false"> No</v-btn>
+                        <v-btn color="red darken-1" text @click="cancel"> No</v-btn>
                 </v-card-actions>
         </v-card>
     </v-dialog>
@@ -44,10 +44,16 @@
     name: "list-profil",
     data() {
       return {
+        show1: false,
         dialog: false,
-        deleting: false,
+        deleteDialog: false,
         user : [],
         deleteIndex: localStorage.getItem("id"),
+
+        nameRules: [(v) => !!v || "Nama harus diisi dan tidak boleh kosong !"],
+        passwordRules: [(v) => !!v || "Password harus diisi dan tidak boleh kosong !"],
+        emailRules: [(v) => !!v || "E-mail harus diisi dan tidak boleh kosong !"],
+        noTlpRules: [(v) => !!v || "Nomor Telepon harus diisi dan tidak boleh kosong !"],
       };
     },
     methods: {
@@ -79,11 +85,12 @@
         })
         .catch(error => {
           this.error_message = error.response.data.message;
+          alert("Email Harus unik atau Email sudah ada");
         });  
       },
-    deleteacc(id){
+    deleteAccount(id){
       this.deleteIndex = id;
-      this.deleting = true;
+      this.deleteDialog = true;
     },
     confirm() {
       var url = this.$api + '/user/' +localStorage.getItem("id");
@@ -99,17 +106,9 @@
           this.error_message = error.response.data.message;
         });
     },
-    close() {
-      this.dialog = false;
-      this.inputan = "Add";
-      this.deleting = false;
-      this.readData();
+    cancel() {
+      this.deleteDialog = false;
     },
-    back(){
-      this.$router.push({
-            name: "ProfilPage",
-        })
-      }
   },        
     mounted() {
       this.readData();
