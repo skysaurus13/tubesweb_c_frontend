@@ -27,6 +27,12 @@
               </div>
             </v-card-text>
           </v-card>
+          <v-snackbar v-model="snackbar" :color="color" timeout="2000" bottom>
+            {{ error_message }}
+          </v-snackbar>
+          <v-snackbar v-model="success" color="green" timeout="2000" bottom>
+            Berhasil Memverifikasi Email
+          </v-snackbar>
         </v-flex>
       </v-layout>
     </v-container>
@@ -49,10 +55,14 @@ export default {
   },
   data() {
     return {
+      load: false,
+      snackbar: false,
+      error_message: "",
+      color: "",
+      valid: false,
       show1: false,
       email: "",
       password: "",
-
       emailRules: [(v) => !!v || "Email harus diisi dan tidak boleh kosong !"],
       passwordRules: [(v) => !!v || "Password harus diisi dan tidak boleh kosong !"],
     };
@@ -84,10 +94,12 @@ export default {
           })
           .catch((error) => {
             this.error_message = error.response.data.message;
-            alert("Email atau Password salah, silahkan coba lagi");
+            this.color = "red";
+            this.snackbar = true;
             localStorage.removeItem("token");
             this.load = false;
-          });
+          })
+          ;
       }
     },
     clear() {
