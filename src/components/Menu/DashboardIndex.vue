@@ -1,63 +1,55 @@
 <template>
     <v-main>
-        <h1 class="text font-weight-medium mb-5 text-left">Home</h1>
-
         <v-item-group>
             <v-container>
                 <v-row>
-                    <v-col v-for="n in 3" :key="n" cols="12" md="4">
-                        <v-card :loading="loading" class="mx-auto my-12" max-width="374">
-                            <v-img
-                                height="250"
-                                src="https://teknokreatips.com/wp-content/uploads/2022/04/apa-itu-web-development.jpg"
-                            ></v-img>
+                    <v-card :loading="loading" class="my-6" max-width="374">
+                        <v-img height="250"
+                            src="https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZGVsaXZlcnl8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"></v-img>
 
-                            <v-card-title><strong> Web Programming </strong></v-card-title>
-                            
-                            <v-card-text>
-                                <v-row align="center" class="mx-0">
-                                    <v-progress-linear
-                                        value="60"
-                                        height="15"
-                                        striped
-                                        color="deep-orange"
-                                    >
-                                        <template v-slot:default="{ value }">
-                                            <strong>{{ Math.ceil(value) }}%</strong>
-                                        </template></v-progress-linear>
-                                </v-row>
+                        <v-card-title style="justify-content: center"><strong> CEPAT </strong></v-card-title>
 
-                                <div class="my-4 text-subtitle-1">
-                                    Web programming refers to the writing, markup, and coding
-                                    involved in Web development. The most common languages used for
-                                    Web programming are HTML, JavaScript, and PHP.
-                                </div>
-                            </v-card-text>
+                        <v-card-text>
+                            <div class="my-4 text-subtitle-1">
+                                NGanterWe memberikan layanan pengiriman paket secara CEPAT
+                            </div>
+                        </v-card-text>
 
-                            <v-divider class="mx-4"></v-divider>
+                        <v-divider class="mx-4"></v-divider>
+                    </v-card>
+
+                    <v-card :loading="loading" class="ml-5 my-6" max-width="374">
+                        <v-img height="250"
+                            src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8ZGVsaXZlcnl8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"></v-img>
+
+                        <v-card-title style="justify-content: center"><strong> TEPAT </strong></v-card-title>
+
+                        <v-card-text>
+                            <div class="my-4 text-subtitle-1">
+                                NGanterWe memberikan layanan pengiriman paket secara TEPAT
+                            </div>
+                        </v-card-text>
+
+                        <v-divider class="mx-4"></v-divider>
+
+                    </v-card>
+
+                    <v-card :loading="loading" class="ml-5 my-6" max-width="374">
+                        <v-img height="250"
+                            src="https://images.unsplash.com/photo-1553413077-190dd305871c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGRlbGl2ZXJ5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"></v-img>
+
+                        <v-card-title style="justify-content: center"><strong> AKURAT </strong></v-card-title>
+
+                        <v-card-text>
+                            <div class="my-4 text-subtitle-1">
+                                NGanterWe memberikan layanan pengiriman paket secara AKURAT
+                            </div>
+                        </v-card-text>
+
+                        <v-divider class="mx-4"></v-divider>
                         
-                            <v-card-title>Schedule</v-card-title>
+                    </v-card>
 
-                            <v-card-text>
-                                <v-chip-group
-                                    v-model="selection"
-                                    active-class="deep-purple accent-4 white--text"
-                                    column
-                                >
-                                    <v-chip>Sesi 1</v-chip>
-                                    <v-chip>Sesi 2</v-chip>
-                                    <v-chip>Sesi 3</v-chip>
-                                    <v-chip>Sesi 4</v-chip>
-                                </v-chip-group>
-                            </v-card-text>
-
-                            <v-card-actions>
-                                <v-btn color="deep-purple lighten-2" text @click="reserve">
-                                    Choose
-                                </v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-col>
                 </v-row>
             </v-container>
         </v-item-group>
@@ -69,10 +61,10 @@
 }
 </style>
 <script>
-    export default {
-        data: () => ({
-            loading: false,
-            selection: 1,
-        }),
-    };
+export default {
+    data: () => ({
+        loading: false,
+        selection: 1,
+    }),
+};
 </script>
