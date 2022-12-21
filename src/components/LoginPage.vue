@@ -3,9 +3,9 @@
     <v-container fluid fill-height class="background">
       <v-layout flex align-center justify-center>
         <v-flex xs12 sm6 elevation-6>
-          <v-toolbar dark color="#d66700">
+          <v-toolbar dark color="#ff6a00">
             <v-toolbar-title>
-              <h2>Welcome to NGanterWe</h2>
+              <h2><b>Welcome to NGanterWe</b></h2>
             </v-toolbar-title>
           </v-toolbar>
           <v-card>
@@ -43,7 +43,7 @@
 
 <style>
 .background {
-  background-image: url('https://shipper.id/blog/wp-content/uploads/2021/08/3750569.jpg');
+  background-image: url('https://www.sap-express.id/blog/wp-content/uploads/2022/07/usaha-jasa-pengiriman-barang-scaled.jpg');
   height: 100vh !important;
   background-size: cover;
 }

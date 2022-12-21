@@ -18,7 +18,7 @@
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
-        <v-app-bar color="#d66700" dark>
+        <v-app-bar color="#ff6a00" dark>
             <v-app-bar-nav-icon @click="drawer = true" color="white" justify="space-around"></v-app-bar-nav-icon>
             <v-list-item-title class="title">NGanterWe</v-list-item-title>
             <v-btn color="white" text @click="logout">Keluar</v-btn>
