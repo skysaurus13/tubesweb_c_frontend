@@ -3,7 +3,7 @@
     <v-container fluid fill-height class="background">
       <v-layout flex align-center justify-center>
         <v-flex xs12 sm6 elevation-6>
-          <v-toolbar dark color="primary">
+          <v-toolbar dark color="#d66700">
             <v-toolbar-title>
               <h1>Login</h1>
             </v-toolbar-title>
@@ -17,7 +17,7 @@
                   <v-text-field :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :type="show1 ? 'text' : 'password'"
                     label="Password" v-model="password" required @click:append="show1 = !show1"
                     :rules="passwordRules"></v-text-field>
-                  <v-btn color="primary" @click="submit">Login</v-btn>
+                  <v-btn color="success" @click="submit">Login</v-btn>
                   <p class="forgot-password text-center mt-3">
                     Belum Punya Akun?
                     <router-link :to="{name: 'register'}">Register</router-link>
