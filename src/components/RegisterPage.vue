@@ -22,12 +22,15 @@
                   <v-btn class="mr-3 mt-3" @click="submit" color="primary">Register</v-btn>
                   <p class="forgot-password text-center mt-3">
                     Sudah Punya Akun?
-                    <v-text><v-btn @click="login"> Login</v-btn></v-text>
+                    <router-link :to="{name: 'login'}">Login</router-link>
                   </p>
                 </v-form>
               </div>
             </v-card-text>
           </v-card>
+          <v-snackbar v-model="snackbar" :color="color" timeout="2000" bottom>
+            {{ error_message }}
+          </v-snackbar>
         </v-flex>
       </v-layout>
     </v-container>
@@ -52,6 +55,9 @@ export default {
       email: '',
       nomorTelepon: '',
       password: '',
+      snackbar: false,
+      error_message: "",
+      color: "",
 
       nameRules: [(v) => !!v || "Nama harus diisi dan tidak boleh kosong !"],
       passwordRules: [(v) => !!v || "Password harus diisi dan tidak boleh kosong !"],
@@ -71,6 +77,8 @@ export default {
           })
           .then((response) => {
             this.error_message = response.data.message;
+            this.color = "green";
+            this.snackbar = true;
             this.clear();
             this.$router.push({
               name: 'login',
@@ -78,14 +86,10 @@ export default {
           })
           .catch((error) => {
             this.error_message = error.response.data.message;
-            alert("Email Harus Unik atau Email sudah ada");
+            this.color = "red";
+            this.snackbar = true;
           })
       }
-    },
-    login() {
-      this.$router.push({
-        name: 'login',
-      });
     },
     clear() {
       this.$refs.form.reset();

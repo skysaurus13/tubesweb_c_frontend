@@ -17,11 +17,10 @@
                   <v-text-field :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :type="show1 ? 'text' : 'password'"
                     label="Password" v-model="password" required @click:append="show1 = !show1"
                     :rules="passwordRules"></v-text-field>
-                  <v-btn color="primary" @click="submit"
-                    :class="{ 'blue white--text': valid, disabled: !valid }">Login</v-btn>
+                  <v-btn color="primary" @click="submit">Login</v-btn>
                   <p class="forgot-password text-center mt-3">
                     Belum Punya Akun?
-                    <v-text><v-btn @click="register"> Register</v-btn></v-text>
+                    <router-link :to="{name: 'register'}">Register</router-link>
                   </p>
                 </v-form>
               </div>
@@ -29,9 +28,6 @@
           </v-card>
           <v-snackbar v-model="snackbar" :color="color" timeout="2000" bottom>
             {{ error_message }}
-          </v-snackbar>
-          <v-snackbar v-model="success" color="green" timeout="2000" bottom>
-            Berhasil Memverifikasi Email
           </v-snackbar>
         </v-flex>
       </v-layout>
@@ -55,11 +51,9 @@ export default {
   },
   data() {
     return {
-      load: false,
       snackbar: false,
       error_message: "",
       color: "",
-      valid: false,
       show1: false,
       email: "",
       password: "",
@@ -68,12 +62,6 @@ export default {
     };
   },
   methods: {
-    register() {
-      this.$router.push({
-        name: 'register',
-      });
-    },
-
     submit() {
       if (this.$refs.form.validate()) {
 
@@ -88,7 +76,6 @@ export default {
             this.error_message = response.data.message;
             this.color = "green";
             this.snackbar = true;
-            this.load = false;
             this.clear();
             this.$router.push({ name: "Root", });
           })
@@ -97,7 +84,6 @@ export default {
             this.color = "red";
             this.snackbar = true;
             localStorage.removeItem("token");
-            this.load = false;
           })
           ;
       }

@@ -91,5 +91,6 @@ router.beforeEach((to, from, next) => {
     }
 });
 
+router.replace("login");
 
 export default router;
