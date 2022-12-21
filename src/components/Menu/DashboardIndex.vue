@@ -13,13 +13,8 @@
         <v-item-group>
             <v-container>
                 <v-row>
-<<<<<<< HEAD
                     <v-card :loading="loading" class="my-6 primary" max-width="374">
                         <v-img height="250" class="mt-5"
-=======
-                    <v-card :loading="loading" class="my-6" max-width="374">
-                        <v-img height="350"
->>>>>>> dfee6ae5f5dbfb7f686164afc745c3fe4d3eed6a
                             src="https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZGVsaXZlcnl8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"></v-img>
 
                         <v-card-title style="justify-content: center" class="white mt-5"><strong> CEPAT
@@ -34,13 +29,8 @@
                         <v-divider class="mx-4"></v-divider>
                     </v-card>
 
-<<<<<<< HEAD
                     <v-card :loading="loading" class="ml-5 my-6 primary" max-width="374">
                         <v-img height="250" class="mt-5"
-=======
-                    <v-card :loading="loading" class="ml-5 my-6" max-width="374">
-                        <v-img height="350"
->>>>>>> dfee6ae5f5dbfb7f686164afc745c3fe4d3eed6a
                             src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8ZGVsaXZlcnl8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"></v-img>
 
                         <v-card-title style="justify-content: center" class="mt-5 white"><strong> TEPAT
@@ -56,13 +46,8 @@
 
                     </v-card>
 
-<<<<<<< HEAD
                     <v-card :loading="loading" class="ml-5 my-6 primary" max-width="374">
                         <v-img height="250" class="mt-5"
-=======
-                    <v-card :loading="loading" class="ml-5 my-6" max-width="374">
-                        <v-img height="350"
->>>>>>> dfee6ae5f5dbfb7f686164afc745c3fe4d3eed6a
                             src="https://images.unsplash.com/photo-1553413077-190dd305871c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGRlbGl2ZXJ5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"></v-img>
 
                         <v-card-title style="justify-content: center" class="mt-5 white"><strong> AKURAT
@@ -74,10 +59,6 @@
                             </div>
                         </v-card-text>
                         <v-divider class="mx-4"></v-divider>
-<<<<<<< HEAD
-
-=======
->>>>>>> dfee6ae5f5dbfb7f686164afc745c3fe4d3eed6a
                     </v-card>
                 </v-row>
             </v-container>

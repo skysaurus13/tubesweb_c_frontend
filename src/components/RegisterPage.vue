@@ -93,11 +93,6 @@ export default {
           })
           .catch((error) => {
             this.error_message = error.response.data.message;
-<<<<<<< HEAD
-=======
-            this.color = "red";
-            this.snackbar = true;
->>>>>>> dfee6ae5f5dbfb7f686164afc745c3fe4d3eed6a
           })
       }
     },
