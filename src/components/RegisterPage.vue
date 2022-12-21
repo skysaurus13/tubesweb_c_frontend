@@ -78,7 +78,6 @@ export default {
           })
           .catch((error) => {
             this.error_message = error.response.data.message;
-            alert("Email Harus Unik atau Email sudah ada");
           })
       }
     },

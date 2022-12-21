@@ -53,21 +53,25 @@ const router = new VueRouter({
                 {
                     path: "/cek",
                     name: "Cek Pengiriman",
+                    meta:{title:'Cek Pengiriman'},
                     component: importComponent("Menu/CekPengiriman"),
                 },
                 {
                     path: "/hub",
                     name: "Hubungi Kami",
+                    meta:{title:'Hubungi Kami'},
                     component: importComponent("Menu/HubungiKami"),
                 },
                 {
                     path: "/profil",
                     name: "Profil",
+                    meta:{title:'Profil'},
                     component: importComponent("Menu/ProfilePage"),
                 },
                 {
                     path: "/updateProfile",
                     name: "updateProfile",
+                    meta:{title:'Ubah Profil'},
                     component: importComponent("Menu/UpdateProfilePage"),
                 },
                 // {

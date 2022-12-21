@@ -1,24 +1,24 @@
 <template>
     <div class="dashboard">
-        <v-navigation-drawer class="fullheight" width="256" v-model="drawer" absolute temporary color="grey lighten-5">
+        <v-navigation-drawer class="fullheight" width="256" v-model="drawer" absolute temporary color="primary">
             <v-list-item>
                 <v-list-item-content>
-                    <v-list-item-title class="title">NGanterWe</v-list-item-title>
+                    <v-list-item-title class="title white--text">NGanterWe</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
 
             <v-divider></v-divider>
 
             <v-list dense nav>
-                <v-list-item v-for="item in items" :key="item.title" link color="light-blue darken-4" tag="router-link"
+                <v-list-item v-for="item in items" :key="item.title" link color="light-blue darken-4 " tag="router-link"
                     :to="item.to">
                     <v-list-item-content>
-                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                        <v-list-item-title class="white--text">{{ item.title }}</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
-        <v-app-bar color="#d66700" dark>
+        <v-app-bar color="primary" dark>
             <v-app-bar-nav-icon @click="drawer = true" color="white" justify="space-around"></v-app-bar-nav-icon>
             <v-list-item-title class="title">NGanterWe</v-list-item-title>
             <v-btn color="white" text @click="logout">Keluar</v-btn>
