@@ -5,9 +5,16 @@
         <v-flex xs12 sm6 elevation-6>
           <v-toolbar dark color="#d66700">
             <v-toolbar-title>
-              <h1>Register</h1>
+              <h2>Welcome to NGanterWe</h2>
             </v-toolbar-title>
           </v-toolbar>
+          <v-card>
+            <v-list-item>
+                <v-list-item-content>
+                    <v-list-item-title class="headline" style="font-weight: bold;">Register</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+          </v-card>
           <v-card>
             <v-card-text class="pt-4">
               <div>
