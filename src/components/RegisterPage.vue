@@ -3,11 +3,18 @@
     <v-container fluid fill-height class="background">
       <v-layout flex align-center justify-center>
         <v-flex xs12 sm6 elevation-6>
-          <v-toolbar dark color="primary">
+          <v-toolbar dark color="#ff6a00">
             <v-toolbar-title>
-              <h1>Register</h1>
+              <h2><b>Welcome to NGanterWe</b></h2>
             </v-toolbar-title>
           </v-toolbar>
+          <v-card>
+            <v-list-item>
+                <v-list-item-content>
+                    <v-list-item-title class="headline" style="font-weight: bold;">Register</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+          </v-card>
           <v-card>
             <v-card-text class="pt-4">
               <div>
@@ -19,15 +26,18 @@
                   <v-text-field :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :type="show1 ? 'text' : 'password'"
                     label="Password" v-model="password" required @click:append="show1 = !show1"
                     :rules="passwordRules"></v-text-field>
-                  <v-btn class="mr-3 mt-3" @click="submit" color="primary">Register</v-btn>
+                  <v-btn class="mr-3 mt-3" @click="submit" color="success">Register</v-btn>
                   <p class="forgot-password text-center mt-3">
                     Sudah Punya Akun?
-                    <v-text><v-btn @click="login"> Login</v-btn></v-text>
+                    <router-link :to="{name: 'login'}">Login</router-link>
                   </p>
                 </v-form>
               </div>
             </v-card-text>
           </v-card>
+          <v-snackbar v-model="snackbar" :color="color" timeout="2000" bottom>
+            {{ error_message }}
+          </v-snackbar>
         </v-flex>
       </v-layout>
     </v-container>
@@ -36,7 +46,7 @@
 
 <style>
 .background {
-  background-image: url('https://shipper.id/blog/wp-content/uploads/2021/08/3750569.jpg');
+  background-image: url('https://www.sap-express.id/blog/wp-content/uploads/2022/07/usaha-jasa-pengiriman-barang-scaled.jpg');
   height: 100vh !important;
   background-size: cover;
 }
@@ -52,6 +62,9 @@ export default {
       email: '',
       nomorTelepon: '',
       password: '',
+      snackbar: false,
+      error_message: "",
+      color: "",
 
       nameRules: [(v) => !!v || "Nama harus diisi dan tidak boleh kosong !"],
       passwordRules: [(v) => !!v || "Password harus diisi dan tidak boleh kosong !"],
@@ -71,6 +84,8 @@ export default {
           })
           .then((response) => {
             this.error_message = response.data.message;
+            this.color = "green";
+            this.snackbar = true;
             this.clear();
             this.$router.push({
               name: 'login',
@@ -78,13 +93,13 @@ export default {
           })
           .catch((error) => {
             this.error_message = error.response.data.message;
+<<<<<<< HEAD
+=======
+            this.color = "red";
+            this.snackbar = true;
+>>>>>>> dfee6ae5f5dbfb7f686164afc745c3fe4d3eed6a
           })
       }
-    },
-    login() {
-      this.$router.push({
-        name: 'login',
-      });
     },
     clear() {
       this.$refs.form.reset();

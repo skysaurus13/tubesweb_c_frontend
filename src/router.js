@@ -20,14 +20,14 @@ const router = new VueRouter({
         {
             path: "/login",
             name: "login",
-            meta:{title:'login'},
+            meta:{title:'login', requiresAuth: false},
             component: importComponent("LoginPage"),
         },
         
         {
             path: "/register",
             name: "register",
-            meta:{title:'register'},
+            meta:{title:'register', requiresAuth: false},
             component: importComponent("RegisterPage"),
         },
 
@@ -41,7 +41,7 @@ const router = new VueRouter({
                 {
                     path: "/dashboard",
                     name: "Root",
-                    meta:{title:'Dashboard'},
+                    meta:{title:'Dashboard', requiresAuth:true},
                     component: importComponent("Menu/DashboardIndex"),
                 },
                 {
@@ -95,5 +95,22 @@ router.beforeEach((to, from, next) => {
     }
 });
 
+function isAuthenticated() {
+    return true;
+  }
+  
+  router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+      if (isAuthenticated()) {
+        next();
+      } else {
+        next("/login");
+      }
+    } else {
+      next();
+    }
+  });
+  
+router.replace("login");
 
 export default router;

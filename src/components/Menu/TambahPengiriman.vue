@@ -36,15 +36,15 @@
                 <v-toolbar color="brown darken-1" dark class="headline">Tambah Pesanan</v-toolbar>
                 <v-card-text>
                     <v-container>
-                        <v-text-field v-model="formTodo.kodePengiriman" label="Kode Pengiriman" required></v-text-field>
-                        <v-text-field v-model="formTodo.namaPenerima" label="Nama Penerima" required></v-text-field>
-                        <v-textarea v-model="formTodo.alamat" label="Alamat" required></v-textarea>
-                        <v-select v-model="formTodo.jenisBarang"
+                        <v-text-field v-model="formBarang.kodePengiriman" label="Kode Pengiriman" required></v-text-field>
+                        <v-text-field v-model="formBarang.namaPenerima" label="Nama Penerima" required></v-text-field>
+                        <v-textarea v-model="formBarang.alamat" label="Alamat" required></v-textarea>
+                        <v-select v-model="formBarang.jenisBarang"
                             :items="['Makanan', 'Apparel', 'Elektronik', 'Otomotif', 'Furnitur']" label="Jenis Barang"
                             required></v-select>
-                        <v-select v-model="formTodo.jenisPengiriman" :items="['Reguler', 'Ekonomis', 'Ekspress']"
+                        <v-select v-model="formBarang.jenisPengiriman" :items="['Reguler', 'Ekonomis', 'Ekspress']"
                             label="Jenis Pengiriman" required></v-select>
-                        <v-select v-model="formTodo.berat" :items="[`<5Kg`, `>5Kg`, `>10Kg`, '>20Kg', '>30Kg']"
+                        <v-select v-model="formBarang.berat" :items="[`<5Kg`, `>5Kg`, `>10Kg`, '>20Kg', '>30Kg']"
                             label="Berat" required></v-select>
                     </v-container>
                 </v-card-text>
@@ -104,7 +104,7 @@ export default {
             ],
             pengiriman: new FormData,
             Pengirimans: [],
-            formTodo: {
+            formBarang: {
                 kodePengiriman: null,
                 namaPenerima: null,
                 alamat: null,
@@ -139,12 +139,12 @@ export default {
 
 
         tambah() {
-            this.pengiriman.append('kodePengiriman', this.formTodo.kodePengiriman);
-            this.pengiriman.append('namaPenerima', this.formTodo.namaPenerima);
-            this.pengiriman.append('alamat', this.formTodo.alamat);
-            this.pengiriman.append('jenisBarang', this.formTodo.jenisBarang);
-            this.pengiriman.append('jenisPengiriman', this.formTodo.jenisPengiriman);
-            this.pengiriman.append('berat', this.formTodo.berat);
+            this.pengiriman.append('kodePengiriman', this.formBarang.kodePengiriman);
+            this.pengiriman.append('namaPenerima', this.formBarang.namaPenerima);
+            this.pengiriman.append('alamat', this.formBarang.alamat);
+            this.pengiriman.append('jenisBarang', this.formBarang.jenisBarang);
+            this.pengiriman.append('jenisPengiriman', this.formBarang.jenisPengiriman);
+            this.pengiriman.append('berat', this.formBarang.berat);
 
             var url = this.$api + '/pengirimen'
             this.load = true;
@@ -170,12 +170,12 @@ export default {
 
         edit() {
             let newData = {
-                kodePengiriman: this.formTodo.kodePengiriman,
-                namaPenerima: this.formTodo.namaPenerima,
-                alamat: this.formTodo.alamat,
-                jenisBarang: this.formTodo.jenisBarang,
-                jenisPengiriman: this.formTodo.jenisPengiriman,
-                berat: this.formTodo.berat
+                kodePengiriman: this.formBarang.kodePengiriman,
+                namaPenerima: this.formBarang.namaPenerima,
+                alamat: this.formBarang.alamat,
+                jenisBarang: this.formBarang.jenisBarang,
+                jenisPengiriman: this.formBarang.jenisPengiriman,
+                berat: this.formBarang.berat
             };
             var url = this.$api + '/pengirimen/' + this.editIndex;
             this.load = true;
@@ -229,12 +229,12 @@ export default {
         editItem(item) {
             this.inputan = 'Edit';
             this.editIndex = item.id;
-            this.formTodo.kodePengiriman = item.kodePengiriman;
-            this.formTodo.namaPenerima = item.namaPenerima;
-            this.formTodo.alamat = item.alamat;
-            this.formTodo.jenisBarang = item.jenisBarang;
-            this.formTodo.jenisPengiriman = item.jenisPengiriman;
-            this.formTodo.berat = item.berat;
+            this.formBarang.kodePengiriman = item.kodePengiriman;
+            this.formBarang.namaPenerima = item.namaPenerima;
+            this.formBarang.alamat = item.alamat;
+            this.formBarang.jenisBarang = item.jenisBarang;
+            this.formBarang.jenisPengiriman = item.jenisPengiriman;
+            this.formBarang.berat = item.berat;
             this.dialog = true;
         },
 
@@ -259,7 +259,7 @@ export default {
         },
 
         resetForm() {
-            this.formTodo = {
+            this.formBarang = {
                 kodePengiriman: null,
                 namaPenerima: null,
                 jenisBarang: null,
