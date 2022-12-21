@@ -9,25 +9,25 @@
                     <v-list-item-title class="headline" style="font-weight: bold;">Hubungi Kami</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
-        </v-card>
-        <v-card-title>
-            <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" outlined hide details
-                style="margin-top: 30px"></v-text-field>
-            <v-spacer></v-spacer>
-            <v-btn color="success" dark @click="dialog = true"> Tambah </v-btn>
-        </v-card-title>
-        <v-card>
-            <v-data-table :items="cekContacts" :headers="headers" :search="search" class="elevation-1">
-                <template v-slot:[`item.actions`]="{ item }">
-                    <v-btn class="ma-2" outlined small color="error"
-                        @click="dialogEdit = true; itemContent = item; editItem(item)">
-                        <v-icon>mdi-pencil</v-icon>
-                    </v-btn>
-                    <v-btn @click="deleteItem(item.id)" class="ma-2" outlined small color="success">
-                        <v-icon> mdi-trash-can-outline</v-icon>
-                    </v-btn>
-                </template>
-            </v-data-table>
+            <v-card-title>
+                <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" outlined hide details
+                    style="margin-top: 30px"></v-text-field>
+                <v-spacer></v-spacer>
+                <v-btn color="success" dark @click="dialog = true"> Tambah </v-btn>
+            </v-card-title>
+            <v-card>
+                <v-data-table :items="cekContacts" :headers="headers" :search="search" class="elevation-1">
+                    <template v-slot:[`item.actions`]="{ item }">
+                        <v-btn class="ma-2" outlined small color="error"
+                            @click="dialogEdit = true; itemContent = item; editItem(item)">
+                            <v-icon>mdi-pencil</v-icon>
+                        </v-btn>
+                        <v-btn @click="deleteItem(item.id)" class="ma-2" outlined small color="success">
+                            <v-icon> mdi-trash-can-outline</v-icon>
+                        </v-btn>
+                    </template>
+                </v-data-table>
+            </v-card>
         </v-card>
         <v-dialog transition="dialog-top-transition" v-model="dialog" persistent max-width="600px">
             <v-card>

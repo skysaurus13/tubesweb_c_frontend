@@ -13,7 +13,7 @@
                 <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" outlined hide details
                     style="margin-top: 30px"></v-text-field>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" dark @click="dialog = true"> Tambah </v-btn>
+                <v-btn color="success" dark @click="dialog = true"> Tambah </v-btn>
             </v-card-title>
         </v-card>
         <v-card>
@@ -285,4 +285,11 @@ export default {
     font-size: 40px;
     font-style: italic;
 }
+
+  .headline{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
 </style>

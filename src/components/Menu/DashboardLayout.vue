@@ -1,6 +1,6 @@
 <template>
     <div class="dashboard">
-        <v-navigation-drawer class="fullheight" width="256" v-model="drawer" absolute temporary color="primary">
+        <v-navigation-drawer class="fullheight" width="256" v-model="drawer" absolute temporary dark color="#ff6a00">
             <v-list-item>
                 <v-list-item-content>
                     <v-list-item-title class="title white--text">NGanterWe</v-list-item-title>
@@ -18,7 +18,7 @@
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
-        <v-app-bar color="primary" dark>
+        <v-app-bar dark color="#ff6a00">
             <v-app-bar-nav-icon @click="drawer = true" color="white" justify="space-around"></v-app-bar-nav-icon>
             <v-list-item-title class="title">NGanterWe</v-list-item-title>
             <v-btn color="white" text @click="logout">Keluar</v-btn>
@@ -63,5 +63,11 @@ export default {
 <style scoped>
 .fullheight {
     min-height: 100vh !important;
+}
+
+.title {
+    position: relative;
+    left: 50%;
+    transform: translateX(-51%);
 }
 </style>
